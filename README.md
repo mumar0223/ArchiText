@@ -262,55 +262,6 @@ my-app/
 
 ---
 
-## 🚀 Getting Started & Installation
-
-### Prerequisites
-
-- **Node.js**: `v18.17.0` or higher
-- **npm** or **pnpm** or **yarn**
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/your-username/my-app.git
-   cd my-app
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Set up Environment Variables:**
-   Create a `.env` file in the root directory (refer to [Environment Variables](#-environment-variables)).
-
-4. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-
-5. **Open the Application:**
-   Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
-
----
-
-## 🔑 Environment Variables
-
-Configure `.env` in the project root:
-
-```env
-# DeepSeek API Configuration
-DEEPSEEK_API_BASE=https://api.deepseek.com/v1
-DEEPSEEK_API_KEY=your_deepseek_api_key_here
-NEXT_PUBLIC_DEEPSEEK_MODEL_ID=deepseek-chat
-
-# Application URL
-NEXT_PUBLIC_APP_URL=http://localhost:3000
-```
-
----
-
 ## 📡 API Reference
 
 ### 1. Execute AI Agent Loop
