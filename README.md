@@ -80,20 +80,20 @@
 
 ---
 
-## 🤖 How Codex Helped Build ArchiText
+## How Codex Helped Build ArchiText
 **Codex** served as the primary AI pair programmer and engineering assistant throughout the design, architecture, and implementation of ArchiText. 
 Key contributions where Codex accelerated and optimized the codebase include:
-### 1. 🔄 Two-Way Document & Visual Canvas Synchronization
+### 1. Two-Way Document & Visual Canvas Synchronization
 * **AST & Mermaid Parser Design:** Codex built the custom stateful Mermaid parser (`parseMermaid` in `lib/mermaid.ts`), handling complex edge cases such as multi-line node labels, database cylinder shapes `[()]`, directional edge protocols, and subgraph boundary extractions.
 * **Bi-directional State Sync:** Implemented reactive state hooks linking user canvas drag-and-drop actions directly to live Markdown text updates without losing component metadata.
-### 2. 🤖 Autonomous Agentic Workflow & Tool Orchestration
+### 2. Autonomous Agentic Workflow & Tool Orchestration
 * **16-Step Autonomous Loop:** Codex engineered the multi-step AI agent loop (`runAgentLoop` in `lib/agent/ai-agent.ts`) using the Vercel AI SDK, enabling the assistant to autonomously inspect topology, add nodes, connect directional edges, write technical component documentation, and validate syntax.
 * **Interactive Clarifying Questions Engine:** Designed the `ask_user_questions` tool and UI state machine (`ClarifyingQuestionsBox.tsx`), allowing the AI Agent to pause execution and request user architectural choices when requirements are ambiguous.
 * **API Parameter Interceptor:** Built the fetch interceptor in `lib/ai-provider.ts` to sanitize JSON tool schemas and eliminate provider parameter errors.
-### 3. 📐 Advanced Dynamic Graph Layout Kernel
+### 3. Advanced Dynamic Graph Layout Kernel
 * **ELK.js Integration:** Codex integrated the Eclipse Layout Kernel (`elkjs`) into `lib/layout.ts`, designing dynamic height calculation logic (`getVisualNodeSize`) based on character line lengths and tech stack badge wrap constraints.
 * **Sub-graph Layout Calculations:** Solved spatial positioning math for child nodes nested inside parent subgraphs/groups across Left-to-Right (`LR`) and Top-to-Bottom (`TD`) view directions.
-### 4. 📦 Offline Persistence & Codebase Blueprint Exporter
+### 4. Offline Persistence & Codebase Blueprint Exporter
 * **IndexedDB Sanitization Guard:** Solved browser storage clone errors by writing `sanitizeNodes()` in `lib/db.ts` to scrub non-serializable DOM event listeners from React Flow node objects before committing to Dexie.js.
 * **Multi-File Blueprint Exporter:** Engineered `markdownExport.ts` and `ExportModal.tsx`, leveraging `JSZip` to bundle full system documentation into downloadable structured project `.zip` archives.
 ---
