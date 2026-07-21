@@ -12,10 +12,11 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [The Core Problems ArchiText Solves](#-the-core-problems-architext-solves)
 - [How It Solves Them (Key Innovations)](#-how-it-solves-them-key-innovations)
+- [How Codex Helped Build ArchiText](#-how-codex-helped-build-architext)
 - [Technology Stack & Key Libraries](#-technology-stack--key-libraries)
 - [System Architecture & Data Flow](#-system-architecture--data-flow)
 - [Deep Dive: Core Modules](#-deep-dive-core-modules)
@@ -33,7 +34,7 @@
 
 ---
 
-## 🎯 The Core Problems ArchiText Solves
+## The Core Problems ArchiText Solves
 
 ### 1. Disconnection Between Visual Diagrams and Technical Docs
 * **The Problem:** Standard architecture tools (Lucidchart, Draw.io, Visio) generate static graphics that lack detailed technical specifications, API contracts, persistence models, and implementation guidelines. Conversely, text-based architecture docs quickly drift out of sync with visual topology.
@@ -53,7 +54,7 @@
 
 ---
 
-## 💡 How It Solves Them (Key Innovations)
+## How It Solves Them (Key Innovations)
 
 ```
 ┌──────────────────────────────────────────────────────────────────────────────────┐
@@ -79,7 +80,25 @@
 
 ---
 
-## 🛠 Technology Stack & Key Libraries
+## 🤖 How Codex Helped Build ArchiText
+**Codex** served as the primary AI pair programmer and engineering assistant throughout the design, architecture, and implementation of ArchiText. 
+Key contributions where Codex accelerated and optimized the codebase include:
+### 1. 🔄 Two-Way Document & Visual Canvas Synchronization
+* **AST & Mermaid Parser Design:** Codex built the custom stateful Mermaid parser (`parseMermaid` in `lib/mermaid.ts`), handling complex edge cases such as multi-line node labels, database cylinder shapes `[()]`, directional edge protocols, and subgraph boundary extractions.
+* **Bi-directional State Sync:** Implemented reactive state hooks linking user canvas drag-and-drop actions directly to live Markdown text updates without losing component metadata.
+### 2. 🤖 Autonomous Agentic Workflow & Tool Orchestration
+* **16-Step Autonomous Loop:** Codex engineered the multi-step AI agent loop (`runAgentLoop` in `lib/agent/ai-agent.ts`) using the Vercel AI SDK, enabling the assistant to autonomously inspect topology, add nodes, connect directional edges, write technical component documentation, and validate syntax.
+* **Interactive Clarifying Questions Engine:** Designed the `ask_user_questions` tool and UI state machine (`ClarifyingQuestionsBox.tsx`), allowing the AI Agent to pause execution and request user architectural choices when requirements are ambiguous.
+* **API Parameter Interceptor:** Built the fetch interceptor in `lib/ai-provider.ts` to sanitize JSON tool schemas and eliminate provider parameter errors.
+### 3. 📐 Advanced Dynamic Graph Layout Kernel
+* **ELK.js Integration:** Codex integrated the Eclipse Layout Kernel (`elkjs`) into `lib/layout.ts`, designing dynamic height calculation logic (`getVisualNodeSize`) based on character line lengths and tech stack badge wrap constraints.
+* **Sub-graph Layout Calculations:** Solved spatial positioning math for child nodes nested inside parent subgraphs/groups across Left-to-Right (`LR`) and Top-to-Bottom (`TD`) view directions.
+### 4. 📦 Offline Persistence & Codebase Blueprint Exporter
+* **IndexedDB Sanitization Guard:** Solved browser storage clone errors by writing `sanitizeNodes()` in `lib/db.ts` to scrub non-serializable DOM event listeners from React Flow node objects before committing to Dexie.js.
+* **Multi-File Blueprint Exporter:** Engineered `markdownExport.ts` and `ExportModal.tsx`, leveraging `JSZip` to bundle full system documentation into downloadable structured project `.zip` archives.
+---
+
+## Technology Stack & Key Libraries
 
 | Technology / Library | Version | Purpose & Strategic Rationale |
 | :--- | :--- | :--- |
@@ -99,7 +118,7 @@
 
 ---
 
-## 📊 System Architecture & Data Flow
+## System Architecture & Data Flow
 
 ### AI Agent Autonomous Loop Flow
 
@@ -139,7 +158,7 @@ sequenceDiagram
 
 ---
 
-## 🔍 Deep Dive: Core Modules
+## Deep Dive: Core Modules
 
 ### 1. Two-Way Reactive Canvas Engine
 * **Location:** [`components/ArchitectureGraph.tsx`](file:///d:/Users/vsdvdsvds/my-app/components/ArchitectureGraph.tsx)
@@ -205,7 +224,7 @@ fetch: async (url, init) => {
 
 ---
 
-## ⚡ Engineering Challenges & Technical Solutions
+## Engineering Challenges & Technical Solutions
 
 | Challenge | Cause | Resolution |
 | :--- | :--- | :--- |
@@ -216,7 +235,7 @@ fetch: async (url, init) => {
 
 ---
 
-## 📁 Project Directory Structure
+## Project Directory Structure
 
 ```
 my-app/
@@ -262,7 +281,7 @@ my-app/
 
 ---
 
-## 📡 API Reference
+## API Reference
 
 ### 1. Execute AI Agent Loop
 * **Endpoint:** `POST /api/agent`
