@@ -301,4 +301,3 @@ my-app/
   ```
 
 ---
- See `LICENSE` for more information.
